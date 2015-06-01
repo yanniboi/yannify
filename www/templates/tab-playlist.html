@@ -1,0 +1,26 @@
+<ion-view view-title="Playlist">
+  <ion-content>
+
+    <div class="button-bar bar-balanced padding" ng-show="controlbar">
+      <a class="button icon ion-skip-backward"></a>
+      <a class="button icon ion-play" ng-click="play()" ng-hide="playing"></a>
+      <a class="button icon ion-pause" ng-click="pause()" ng-show="playing"></a>
+      <a class="button icon ion-skip-forward"></a>
+    </div>
+
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="data in playlist.items" type="item-text-wrap" ng-click="start(data.track.uri)">
+        <img ng-src="{{data.track.album.images[1].url}}">
+        <h2>{{data.track.name}}</h2>
+        <div class="artists">
+          <span ng-repeat="artist in data.track.artists">{{artist.name}}{{$last ? '' : ', '}}</span>
+        </div>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(data.track)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
